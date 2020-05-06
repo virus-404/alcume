@@ -1,0 +1,3 @@
+ng serve --> front-end
+node serve.js --> back-end mannual
+npm run start:server --> back-end automatic
