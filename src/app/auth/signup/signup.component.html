@@ -1,0 +1,78 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        name="name"
+        type="text"
+        ngModel
+        placeholder="Name, Surname"
+        #nameInput="ngModel"
+        required
+        minlength="2">
+        <mat-error *ngIf="nameInput.invalid">Please enter your name!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="email"
+        type="email"
+        ngModel
+        placeholder="E-mail"
+        #emailInput="ngModel"
+        required
+        email>
+        <mat-error *ngIf="emailInput.invalid">Please enter your e-mail!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="password"
+        type="password"
+        ngModel
+        placeholder="Password"
+        #passwordInput="ngModel"
+        minlength="6"
+        required>
+      <mat-error *ngIf="passwordInput.errors?.required">Please enter your password!</mat-error>
+      <mat-error *ngIf="passwordInput.errors?.minlength">Your password has to be bigger than 6 characters!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="repeated-password"
+        type="password"
+        ngModel
+        placeholder="Repeat the password"
+        minlength="6"
+        #repeatedPasswordInput="ngModel"
+        required>
+      <mat-error *ngIf="repeatedPasswordInput.errors?.required">Please repeat the password!</mat-error>
+      <mat-error *ngIf="(repeatedPasswordInput.errors?.minlength || passwordInput !== repeatedPasswordInput)
+        && repeatedPasswordInput.errors?.required == null">The password doesn't match!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="birthday"
+        type="date"
+        ngModel
+        placeholder="Birthday"
+        #birthdayInput="ngModel">
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        name="telephone"
+        type="tel"
+        ngModel
+        placeholder="Telephone"
+        #telephoneInput="ngModel">
+    </mat-form-field>
+    <button
+     mat-raised-button
+     color="accent"
+     type="submit">Signup</button>
+  </form>
+</mat-card>
